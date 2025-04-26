@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { MessageSquare, Send, Image, File, Mic, Phone, Video, MoreVertical, Search, Smile, Paperclip, ChevronDown } from "lucide-react";
+import { MessageSquare, Send, Image, File, Mic, Phone, Video, MoreVertical, Search, Smile, Paperclip, ChevronDown, ChevronLeft, FolderClosed, X } from "lucide-react";
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { motion, AnimatePresence } from 'framer-motion';
@@ -42,6 +42,20 @@ const reactions = [
   { emoji: '😮', label: 'Wow', icon: ChevronDown },
   { emoji: '😢', label: 'Sad', icon: ChevronDown },
   { emoji: '😡', label: 'Angry', icon: ChevronDown },
+  { emoji: '🔥', label: 'Fire', icon: ChevronDown },
+  { emoji: '👏', label: 'Clap', icon: ChevronDown },
+  { emoji: '🎉', label: 'Party', icon: ChevronDown },
+  { emoji: '🥰', label: 'In Love', icon: ChevronDown },
+  { emoji: '🤔', label: 'Thinking', icon: ChevronDown },
+  { emoji: '😎', label: 'Cool', icon: ChevronDown },
+  { emoji: '😆', label: 'Grin', icon: ChevronDown },
+  { emoji: '😭', label: 'Crying', icon: ChevronDown },
+  { emoji: '🤯', label: 'Mind Blown', icon: ChevronDown },
+  { emoji: '😇', label: 'Angel', icon: ChevronDown },
+  { emoji: '😜', label: 'Wink', icon: ChevronDown },
+  { emoji: '🤩', label: 'Starstruck', icon: ChevronDown },
+  { emoji: '😏', label: 'Smirk', icon: ChevronDown },
+  { emoji: '🙌', label: 'Praise', icon: ChevronDown },
 ];
 
 const ChatTab = () => {
@@ -54,73 +68,74 @@ const ChatTab = () => {
   const [showEmojiPanel, setShowEmojiPanel] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [emojiPanelOpen, setEmojiPanelOpen] = useState(false);
-
-  const mockUsers: User[] = [
-    { 
-      id: 1, 
-      name: 'محمد', 
-      status: 'online', 
-      avatar: '/school/placeholder.svg',
-      lastSeen: 'Active now',
-      role: 'Teacher',
-      unreadCount: 2
-    },
-    { 
-      id: 2, 
-      name: 'Sarah', 
-      status: 'online', 
-      avatar: '/school/placeholder.svg',
-      lastSeen: 'Active now',
-      role: 'Student'
-    },
-    { 
-      id: 3, 
-      name: 'Ahmed', 
-      status: 'away', 
-      avatar: '/school/placeholder.svg',
-      lastSeen: 'Last seen 2h ago',
-      role: 'Student',
-      unreadCount: 1
-    },
-    { 
-      id: 4, 
-      name: 'Fatima', 
-      status: 'offline', 
-      avatar: '/school/placeholder.svg',
-      lastSeen: 'Last seen yesterday',
-      role: 'Student'
-    },
-  ];
-
-  const mockMessages: Message[] = [
-    { 
-      id: 1, 
-      user: 'محمد', 
-      message: 'مرحباً بالجميع', 
+  const [reactionPickerFor, setReactionPickerFor] = useState<number | null>(null);
+  const [emojiPickerForMessageId, setEmojiPickerForMessageId] = useState<number | null>(null);
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      id: 1,
+      user: 'محمد',
+      message: 'مرحباً بالجميع',
       time: '10:00 AM',
       isMe: false,
       status: 'read',
       type: 'text',
       reactions: [{ emoji: '👍', count: 2, users: ['محمد'] }, { emoji: '❤️', count: 1, users: ['محمد'] }]
     },
-    { 
-      id: 2, 
-      user: 'Sarah', 
-      message: 'Hello everyone!', 
+    {
+      id: 2,
+      user: 'Sarah',
+      message: 'Hello everyone!',
       time: '10:01 AM',
       isMe: false,
       status: 'read',
       type: 'text'
     },
-    { 
-      id: 3, 
-      user: 'You', 
-      message: 'How is the course going?', 
+    {
+      id: 3,
+      user: 'You',
+      message: 'How is the course going?',
       time: '10:02 AM',
       isMe: true,
       status: 'read',
       type: 'text',
       reactions: [{ emoji: '👍', count: 1, users: ['You'] }]
+    },
+  ]);
+
+  const mockUsers: User[] = [
+    {
+      id: 1,
+      name: 'محمد',
+      status: 'online',
+      avatar: '/school/placeholder.svg',
+      lastSeen: 'Active now',
+      role: 'Teacher',
+      unreadCount: 2
+    },
+    {
+      id: 2,
+      name: 'Sarah',
+      status: 'online',
+      avatar: '/school/placeholder.svg',
+      lastSeen: 'Active now',
+      role: 'Student'
+    },
+    {
+      id: 3,
+      name: 'Ahmed',
+      status: 'away',
+      avatar: '/school/placeholder.svg',
+      lastSeen: 'Last seen 2h ago',
+      role: 'Student',
+      unreadCount: 1
+    },
+    {
+      id: 4,
+      name: 'Fatima',
+      status: 'offline',
+      avatar: '/school/placeholder.svg',
+      lastSeen: 'Last seen yesterday',
+      role: 'Student'
     },
   ];
 
@@ -130,7 +145,20 @@ const ChatTab = () => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [mockMessages]);
+  }, [messages]);
+
+  useEffect(() => {
+    // Close emoji picker on outside click
+    const handleClick = (e: MouseEvent) => {
+      setEmojiPickerForMessageId(null);
+    };
+    if (emojiPickerForMessageId !== null) {
+      document.addEventListener('click', handleClick);
+    }
+    return () => {
+      document.removeEventListener('click', handleClick);
+    };
+  }, [emojiPickerForMessageId]);
 
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
@@ -142,8 +170,21 @@ const ChatTab = () => {
   };
 
   const handleReaction = (messageId: number, emoji: string) => {
-    // Here you would typically update the message reactions in your backend
-    console.log('Adding reaction:', emoji, 'to message:', messageId);
+    setMessages(prevMsgs => prevMsgs.map(msg => {
+      if (msg.id !== messageId) return msg;
+      const newReactions = msg.reactions ? [...msg.reactions] : [];
+      const user = 'You';
+      const existing = newReactions.find(r => r.emoji === emoji);
+      if (existing) {
+        if (!existing.users.includes(user)) {
+          existing.count += 1;
+          existing.users.push(user);
+        }
+      } else {
+        newReactions.push({ emoji, count: 1, users: [user] });
+      }
+      return { ...msg, reactions: newReactions };
+    }));
   };
 
   // Helper for date separators
@@ -190,7 +231,7 @@ const ChatTab = () => {
       <aside
         className={cn(
           "w-64 md:w-80 max-w-full border-r bg-white flex flex-col z-30 h-full md:h-auto transition-transform duration-300 shadow-md md:shadow-none",
-          sidebarOpen ? "fixed md:static translate-x-0" : "fixed md:static -translate-x-full md:translate-x-0",
+          sidebarOpen ? "fixed md:static translate-x-0 top-0" : "fixed md:static -translate-x-full md:translate-x-0",
           "left-0 md:block",
           "mt-16 md:mt-0"
         )}
@@ -201,17 +242,16 @@ const ChatTab = () => {
         }}
       >
         {/* Sticky search bar at the top, but not at the very top of the screen */}
-        <div className="border-b flex items-center gap-2 bg-white sticky top-0 z-20 px-2 py-2 md:px-4 md:py-4" style={{maxHeight: '4.5rem'}}>
+        <div className="border-b flex items-center gap-2 bg-white/80 sticky top-0 z-20 px-2 py-2 md:px-4 md:py-4" style={{ maxHeight: '4.5rem' }}>
           <Button variant="ghost" size="icon" className="md:hidden h-8 w-8" onClick={() => setSidebarOpen(false)}>
-            <ChevronDown className="h-4 w-4" />
+            <X className="h-4 w-4" />
           </Button>
           <Input className="flex-1 rounded-full text-xs md:text-sm bg-gray-100 h-8 md:h-10" placeholder="Search..." />
         </div>
-        {/* Scrollable contacts list */}
-        <div className="flex-1 overflow-y-auto" style={{maxHeight: 'calc(90vh - 5.5rem)'}}>
+        <div className="flex-1 overflow-y-auto" style={{ maxHeight: 'calc(90vh - 5.5rem)' }}>
           <div className="divide-y">
             {chatList.map(chat => (
-              <div key={chat.id} className="flex items-center gap-2 md:gap-3 px-2 md:px-4 py-2 md:py-3 cursor-pointer hover:bg-blue-50 transition rounded-xl md:rounded-lg relative bg-white mb-2 md:mb-0 shadow-sm md:shadow-none">
+              <div key={chat.id} className="flex items-center gap-2 md:gap-3 px-2 md:px-4 py-2 md:py-3 cursor-pointer hover:bg-blue-50 transition rounded-xl md:rounded-lg relative bg-white shadow-sm md:shadow-none">
                 <div className="relative flex-shrink-0">
                   <Avatar className="h-8 w-8 md:h-10 md:w-10">
                     <AvatarImage src={chat.avatar} />
@@ -269,40 +309,80 @@ const ChatTab = () => {
         <ScrollArea className="flex-1 px-2 md:px-8 py-2 md:py-6 space-y-2">
           {renderDateSeparator('April 19')}
           <div className="flex flex-col gap-2">
-            {mockMessages.map((msg) => (
+            {messages.map((msg) => (
               <div key={msg.id} className={cn(
                 "flex items-end gap-2",
                 msg.isMe ? "justify-end" : "justify-start"
               )}>
-                {/* Reactions (vertical) */}
-                {!msg.isMe && (
-                  <div className="flex flex-col gap-1 items-center order-2 rtl:order-1">
-                    {msg.reactions && msg.reactions.map((r, i) => (
-                      <span key={i} className="bg-white/80 px-2 py-1 rounded-full text-xs shadow">{r.emoji}</span>
-                    ))}
+                {/* Message bubble with emoji picker on right-click */}
+                <div className="relative">
+                  <div
+                    className={cn(
+                      msg.isMe
+                        ? "bg-blue-500 text-white rounded-2xl rounded-br-none"
+                        : "bg-white text-gray-900 rounded-2xl rounded-bl-none border",
+                      "p-3 shadow max-w-full md:max-w-lg text-sm md:text-base relative"
+                    )}
+                    onContextMenu={e => {
+                      e.preventDefault();
+                      setEmojiPickerForMessageId(msg.id);
+                    }}
+                    style={{ cursor: 'context-menu' }}
+                  >
+                    <div>{msg.message}</div>
+                    {/* Reactions inside the message bubble, styled as Telegram */}
+                    {msg.reactions && msg.reactions.length > 0 && (
+                      <div className={cn(
+                        "flex flex-row flex-wrap gap-1 mt-2",
+                        msg.isMe ? "justify-end" : "justify-start"
+                      )}>
+                        {msg.reactions.map((r, i) => (
+                          <span
+                            key={r.emoji + i}
+                            className={cn(
+                              "inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium shadow"
+                            )}
+                            style={{ minWidth: 28 }}
+                          >
+                            <span className="text-lg mr-1">{r.emoji}</span> <span className="font-semibold">{r.count}</span>
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    <div className="flex justify-between items-center mt-2">
+                      <span className="text-xs text-gray-400">{msg.time}</span>
+                      <span className={cn("text-xs", msg.status === 'read' ? 'text-blue-200' : 'text-gray-200')}>✓✓</span>
+                    </div>
                   </div>
-                )}
-                {/* Message bubble */}
-                <div className={cn(
-                  msg.isMe
-                    ? "bg-blue-500 text-white rounded-2xl rounded-br-none"
-                    : "bg-white text-gray-900 rounded-2xl rounded-bl-none border",
-                  "p-3 shadow max-w-full md:max-w-lg text-sm md:text-base"
-                )}>
-                  <div>{msg.message}</div>
-                  <div className="flex justify-between items-center mt-2">
-                    <span className="text-xs text-gray-400">{msg.time}</span>
-                    <span className={cn("text-xs", msg.status === 'read' ? 'text-blue-500' : 'text-gray-400')}>✓✓</span>
-                  </div>
+                  {/* Emoji Picker Panel on right-click - closer, scrollable, no scrollbar */}
+                  {emojiPickerForMessageId === msg.id && (
+                    <div
+                      className={cn(
+                        "absolute z-40 top-1/2 -translate-y-1/2 flex flex-col bg-white rounded-2xl shadow-lg p-1 border",
+                        !msg.isMe ? "right-[0px]" : "left-[0px]"
+                      )}
+                      style={{ maxHeight: '220px', minHeight: '44px', overflowY: 'auto', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                      onClick={e => e.stopPropagation()} // Prevent closing when clicking inside
+                    >
+                      <style>{`.emoji-scrollbar::-webkit-scrollbar { display: none; }`}</style>
+                      <div className="emoji-scrollbar flex flex-col" style={{ overflowY: 'auto' }}>
+                        {reactions.map((r) => (
+                          <button
+                            key={r.emoji}
+                            className="text-xl p-1 hover:bg-gray-100 rounded-full"
+                            type="button"
+                            onClick={() => {
+                              handleReaction(msg.id, r.emoji);
+                              setEmojiPickerForMessageId(null);
+                            }}
+                          >
+                            {r.emoji}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
-                {/* Reactions for 'me' */}
-                {msg.isMe && (
-                  <div className="flex flex-col gap-1 items-center order-2 rtl:order-1">
-                    {msg.reactions && msg.reactions.map((r, i) => (
-                      <span key={i} className="bg-white/80 px-2 py-1 rounded-full text-xs shadow">{r.emoji}</span>
-                    ))}
-                  </div>
-                )}
               </div>
             ))}
           </div>

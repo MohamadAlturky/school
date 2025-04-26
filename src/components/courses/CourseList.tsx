@@ -9,25 +9,10 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Users, FileText, FileArchive } from "lucide-react";
+import { useNavigate } from 'react-router-dom';
 
-const mockCourses = [
-  {
-    id: 1,
-    name: "الرياضيات",
-    teacher: "سارة عبدالله",
-    studentsCount: 25,
-    description: "مادة الرياضيات للصف الأول الثانوي"
-  },
-  {
-    id: 2,
-    name: "اللغة العربية",
-    teacher: "أحمد محمد",
-    studentsCount: 30,
-    description: "مادة اللغة العربية للصف الأول الثانوي"
-  }
-];
-
-export const CourseList = () => {
+export const CourseList = ({ courses }) => {
+  const navigate = useNavigate();
   return (
     <Table>
       <TableHeader>
@@ -40,7 +25,7 @@ export const CourseList = () => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {mockCourses.map((course) => (
+        {courses.map((course) => (
           <TableRow key={course.id}>
             <TableCell className="font-medium">{course.name}</TableCell>
             <TableCell>{course.teacher}</TableCell>
@@ -48,13 +33,13 @@ export const CourseList = () => {
             <TableCell>{course.description}</TableCell>
             <TableCell>
               <div className="flex gap-2">
-                <Button variant="outline" size="icon" title="إدارة الطلاب">
+                <Button variant="outline" size="icon" title="إدارة الطلاب" onClick={() => navigate(`/admin/course-management/${course.id}/students`)}>
                   <Users className="h-4 w-4" />
                 </Button>
-                <Button variant="outline" size="icon" title="تفاصيل المادة">
+                <Button variant="outline" size="icon" title="تفاصيل المادة" onClick={() => navigate(`/courses/${course.id}`)}>
                   <FileText className="h-4 w-4" />
                 </Button>
-                <Button variant="outline" size="icon" title="ملفات المادة">
+                <Button variant="outline" size="icon" title="ملفات المادة" onClick={() => navigate(`/admin/course-management/${course.id}/files`)}>
                   <FileArchive className="h-4 w-4" />
                 </Button>
               </div>

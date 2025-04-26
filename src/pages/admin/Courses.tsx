@@ -6,9 +6,35 @@ import { Plus } from "lucide-react";
 import { CourseList } from "@/components/courses/CourseList";
 import { AddCourseDialog } from "@/components/courses/AddCourseDialog";
 
+const initialCourses = [
+  {
+    id: 1,
+    name: "الرياضيات",
+    teacher: "سارة عبدالله",
+    studentsCount: 25,
+    description: "مادة الرياضيات للصف الأول الثانوي"
+  },
+  {
+    id: 2,
+    name: "اللغة العربية",
+    teacher: "أحمد محمد",
+    studentsCount: 30,
+    description: "مادة اللغة العربية للصف الأول الثانوي"
+  }
+];
+
 const Courses = () => {
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+  const [courses, setCourses] = React.useState(initialCourses);
   const { toast } = useToast();
+
+  const handleAddCourse = (course) => {
+    setCourses(prev => [
+      ...prev,
+      { ...course, id: Date.now(), studentsCount: 0 }
+    ]);
+    toast({ title: "تمت إضافة المادة بنجاح!" });
+  };
 
   return (
     <div className="container px-4 py-8">
@@ -25,13 +51,14 @@ const Courses = () => {
           <CardTitle>المواد الدراسية</CardTitle>
         </CardHeader>
         <CardContent>
-          <CourseList />
+          <CourseList courses={courses} />
         </CardContent>
       </Card>
 
       <AddCourseDialog
         open={isDialogOpen}
         onOpenChange={setIsDialogOpen}
+        onAddCourse={handleAddCourse}
       />
     </div>
   );

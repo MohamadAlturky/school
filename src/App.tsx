@@ -17,6 +17,8 @@ import { LanguageProvider } from "./contexts/LanguageContext";
 import CourseAssignments from './pages/CourseAssignments';
 import CourseNotes from './pages/CourseNotes';
 import CourseDetails from './pages/CourseDetails';
+import CourseStudents from './pages/admin/CourseStudents';
+import CourseFiles from './pages/admin/CourseFiles';
 
 const queryClient = new QueryClient();
 
@@ -37,6 +39,8 @@ const App = () => (
               <Route path="/chat" element={<ChatTab />} />
               <Route path="/admin/courses" element={<Courses />} />
               <Route path="/admin/course-management" element={<CourseManagement />} />
+              <Route path="/admin/course-management/:courseId/students" element={<CourseStudents />} />
+              <Route path="/admin/course-management/:courseId/files" element={<CourseFiles />} />
               <Route path="/courses/:courseId/assignments" element={<CourseAssignments />} />
               <Route path="/courses/:courseId/notes" element={<CourseNotes />} />
               <Route path="/courses/:courseId" element={<CourseDetails />} />

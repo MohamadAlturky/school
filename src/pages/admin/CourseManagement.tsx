@@ -39,11 +39,29 @@ import {
 } from 'lucide-react';
 import NoteIcon from '@/components/icons/NoteIcon';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useParams } from 'react-router-dom';
+
+const StudentsManagement = ({ courseId }) => (
+  <div className="container py-8">
+    <h2 className="text-2xl font-bold mb-4">إدارة الطلاب للمادة #{courseId}</h2>
+    <p>هنا يمكنك إدارة الطلاب المسجلين في هذه المادة.</p>
+    {/* Add student management UI here */}
+  </div>
+);
+
+const FilesManagement = ({ courseId }) => (
+  <div className="container py-8">
+    <h2 className="text-2xl font-bold mb-4">ملفات المادة #{courseId}</h2>
+    <p>هنا يمكنك إدارة ملفات المادة.</p>
+    {/* Add file management UI here */}
+  </div>
+);
 
 const CourseManagement = () => {
   const { t, language } = useLanguage();
   const { toast } = useToast();
   const [date, setDate] = useState<Date | undefined>(new Date());
+  const { courseId, subview } = useParams();
 
   const [courseArchives] = useState([
     { year: '2024-2025', courses: 12 },
@@ -70,6 +88,12 @@ const CourseManagement = () => {
     { id: 3, title: 'Arabic Poetry Recitation', type: 'audio', size: '45MB', uploaded: '2025-04-15' },
   ]);
 
+  if (subview === 'students') {
+    return <StudentsManagement courseId={courseId} />;
+  }
+  if (subview === 'files') {
+    return <FilesManagement courseId={courseId} />;
+  }
   return (
     <div className="container px-4 py-8">
       <div className="flex justify-between items-center mb-6">

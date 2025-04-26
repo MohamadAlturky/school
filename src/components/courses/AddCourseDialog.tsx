@@ -20,6 +20,7 @@ import { Input } from "@/components/ui/input";
 interface AddCourseDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  onAddCourse: (course: { name: string; description: string; teacher: string }) => void;
 }
 
 type FormData = {
@@ -28,12 +29,13 @@ type FormData = {
   teacher: string;
 };
 
-export const AddCourseDialog = ({ open, onOpenChange }: AddCourseDialogProps) => {
+export const AddCourseDialog = ({ open, onOpenChange, onAddCourse }: AddCourseDialogProps) => {
   const form = useForm<FormData>();
 
   const onSubmit = (data: FormData) => {
-    console.log(data);
+    onAddCourse(data);
     onOpenChange(false);
+    form.reset();
   };
 
   return (
