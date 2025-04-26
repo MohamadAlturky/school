@@ -14,37 +14,37 @@ const Teachers = () => {
       id: 1,
       name: 'محمد',
       subject: 'الرياضيات',
-      avatarUrl: '/placeholder.svg',
+      avatarUrl: '/school/placeholder.svg',
     },
     {
       id: 2,
       name: 'Fatima',
       subject: 'العلوم',
-      avatarUrl: '/placeholder.svg',
+      avatarUrl: '/school/placeholder.svg',
     },
     {
       id: 3,
       name: 'Ahmed',
       subject: 'اللغة العربية',
-      avatarUrl: '/placeholder.svg',
+      avatarUrl: '/school/placeholder.svg',
     },
     {
       id: 4,
       name: 'Aisha',
       subject: 'English',
-      avatarUrl: '/placeholder.svg',
+      avatarUrl: '/school/placeholder.svg',
     },
     {
       id: 5,
       name: 'Ali',
       subject: 'التاريخ',
-      avatarUrl: '/placeholder.svg',
+      avatarUrl: '/school/placeholder.svg',
     },
     {
       id: 6,
       name: 'Sara',
       subject: 'الجغرافيا',
-      avatarUrl: '/placeholder.svg',
+      avatarUrl: '/school/placeholder.svg',
     },
   ];
 

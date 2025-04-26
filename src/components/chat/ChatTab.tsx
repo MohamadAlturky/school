@@ -60,7 +60,7 @@ const ChatTab = () => {
       id: 1, 
       name: 'محمد', 
       status: 'online', 
-      avatar: '/placeholder.svg',
+      avatar: '/school/placeholder.svg',
       lastSeen: 'Active now',
       role: 'Teacher',
       unreadCount: 2
@@ -69,7 +69,7 @@ const ChatTab = () => {
       id: 2, 
       name: 'Sarah', 
       status: 'online', 
-      avatar: '/placeholder.svg',
+      avatar: '/school/placeholder.svg',
       lastSeen: 'Active now',
       role: 'Student'
     },
@@ -77,7 +77,7 @@ const ChatTab = () => {
       id: 3, 
       name: 'Ahmed', 
       status: 'away', 
-      avatar: '/placeholder.svg',
+      avatar: '/school/placeholder.svg',
       lastSeen: 'Last seen 2h ago',
       role: 'Student',
       unreadCount: 1
@@ -86,7 +86,7 @@ const ChatTab = () => {
       id: 4, 
       name: 'Fatima', 
       status: 'offline', 
-      avatar: '/placeholder.svg',
+      avatar: '/school/placeholder.svg',
       lastSeen: 'Last seen yesterday',
       role: 'Student'
     },
@@ -160,7 +160,7 @@ const ChatTab = () => {
     {
       id: 1,
       name: 'RTX && RGB Ibrahim',
-      avatar: '/placeholder.svg',
+      avatar: '/school/placeholder.svg',
       lastMessage: 'Forwarded from RTX && RGB Ibrahim',
       time: '12:52 PM',
       unread: 2,
@@ -173,7 +173,7 @@ const ChatTab = () => {
     ...Array.from({ length: 30 }, (_, i) => ({
       id: i + 2,
       name: `Contact ${i + 2}`,
-      avatar: '/placeholder.svg',
+      avatar: '/school/placeholder.svg',
       lastMessage: `Last message from Contact ${i + 2}`,
       time: `${10 + (i % 12)}:${(i * 3) % 60 < 10 ? '0' : ''}${(i * 3) % 60} AM`,
       unread: i % 4 === 0 ? 1 : 0,
@@ -249,7 +249,7 @@ const ChatTab = () => {
             <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6"><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="18" x2="21" y2="18" /></svg>
           </Button>
           <Avatar className="h-10 w-10">
-            <AvatarImage src={"/school/placeholder.svg"} />
+            <AvatarImage src="/school/placeholder.svg" />
             <AvatarFallback>GC</AvatarFallback>
           </Avatar>
           <div className="flex-1 min-w-0">

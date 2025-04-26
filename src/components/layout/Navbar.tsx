@@ -47,7 +47,7 @@ const Navbar: React.FC = () => {
       <div className="container flex h-16 items-center justify-between px-4 md:px-6">
         <div className="flex items-center gap-2">
           <Link to="/" className="flex items-center gap-2">
-            <img src="/placeholder.svg" alt={t('home')} className="h-8 w-8" />
+            <img src="/school/placeholder.svg" alt={t('home')} className="h-8 w-8" />
             <span className="text-xl font-bold text-primary">مدرسة آفاق</span>
           </Link>
         </div>

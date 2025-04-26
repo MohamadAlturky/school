@@ -17,7 +17,7 @@ export const StudentProfileHeader: React.FC<StudentProfileHeaderProps> = ({
   return (
     <div className="flex items-center gap-4">
       <img 
-        src={image || '/placeholder.svg'} 
+        src={image || '/school/placeholder.svg'} 
         alt={name}
         className="rounded-full w-16 h-16 object-cover border-2 border-primary"
       />

@@ -94,13 +94,13 @@ const ParentDashboard = () => {
       id: 1,
       name: "عبد الله محمد",
       grade: "الصف السابع أ",
-      image: "/placeholder.svg",
+      image: "/school/placeholder.svg",
     },
     {
       id: 2,
       name: "سارة محمد",
       grade: "الصف الخامس ب",
-      image: "/placeholder.svg",
+      image: "/school/placeholder.svg",
     },
   ];
 
@@ -405,7 +405,7 @@ const ParentDashboard = () => {
               <CardContent>
                 <div className="flex flex-col items-center">
                   <img
-                    src={students.find(s => s.id === selectedStudent)?.image || "/placeholder.svg"}
+                    src={students.find(s => s.id === selectedStudent)?.image || "/school/placeholder.svg"}
                     alt="صورة الطالب"
                     className="w-24 h-24 rounded-full mb-4 object-cover"
                   />

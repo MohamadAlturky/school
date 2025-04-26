@@ -142,7 +142,7 @@ const Index = () => {
               </blockquote>
               <div className="flex items-center justify-center gap-4">
                 <img
-                  src="/placeholder.svg"
+                  src="/school/placeholder.svg"
                   alt={t('principal_title')}
                   className="h-16 w-16 rounded-full object-cover border-2 border-primary shadow-lg"
                 />
@@ -429,7 +429,7 @@ const Index = () => {
                     <CardContent className="p-6">
                       <div className="flex items-center gap-4">
                         <img
-                          src="/placeholder.svg"
+                          src="/school/placeholder.svg"
                           alt={t('parent_name1')}
                           className="h-16 w-16 rounded-full object-cover border-2 border-primary shadow-lg"
                         />
@@ -449,7 +449,7 @@ const Index = () => {
                     <CardContent className="p-6">
                       <div className="flex items-center gap-4">
                         <img
-                          src="/placeholder.svg"
+                          src="/school/placeholder.svg"
                           alt={t('student_name1')}
                           className="h-16 w-16 rounded-full object-cover border-2 border-primary shadow-lg"
                         />
@@ -469,7 +469,7 @@ const Index = () => {
                     <CardContent className="p-6">
                       <div className="flex items-center gap-4">
                         <img
-                          src="/placeholder.svg"
+                          src="/school/placeholder.svg"
                           alt={t('alumni_name1')}
                           className="h-16 w-16 rounded-full object-cover border-2 border-primary shadow-lg"
                         />

@@ -91,7 +91,7 @@ const CourseDetails = () => {
     schedule: "الأحد، الثلاثاء، الخميس - 9:00 صباحاً",
     duration: "12 أسبوع",
     level: "متوسط",
-    image: "/placeholder.svg",
+    image: "/school/placeholder.svg",
   };
 
   const lessons: Lesson[] = [
@@ -289,7 +289,7 @@ const CourseDetails = () => {
                           <CardDescription>{lesson.description}</CardDescription>
                         </div>
                         {lesson.completed && (
-                          <Badge variant="success">مكتمل</Badge>
+                          <Badge variant="secondary">مكتمل</Badge>
                         )}
                       </div>
                     </CardHeader>
@@ -346,7 +346,7 @@ const CourseDetails = () => {
                       <TableCell>
                         <Badge
                           variant={
-                            assignment.status === "مكتمل" ? "success" :
+                            assignment.status === "مكتمل" ? "outline" :
                             assignment.status === "متأخر" ? "destructive" :
                             "secondary"
                           }

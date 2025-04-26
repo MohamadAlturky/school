@@ -41,7 +41,7 @@ const Chat = () => {
       {
         id: 1,
         name: 'محمد أحمد',
-        avatar: '/placeholder.svg',
+        avatar: '/school/placeholder.svg',
         lastMessage: 'مرحباً، كيف حالك؟',
         timestamp: '10:30 AM',
         unreadCount: 2,
@@ -50,7 +50,7 @@ const Chat = () => {
       {
         id: 2,
         name: 'Sarah Johnson',
-        avatar: '/placeholder.svg',
+        avatar: '/school/placeholder.svg',
         lastMessage: 'Can you send me the notes?',
         timestamp: 'Yesterday',
         unreadCount: 0,
@@ -59,7 +59,7 @@ const Chat = () => {
       {
         id: 3,
         name: 'أحمد علي',
-        avatar: '/placeholder.svg',
+        avatar: '/school/placeholder.svg',
         lastMessage: 'شكراً على المساعدة',
         timestamp: 'Yesterday',
         unreadCount: 0,
