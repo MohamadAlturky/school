@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Send, Search, MoreVertical, Phone, Video, Image, File, Mic } from "lucide-react";
+import { Send, Search, MoreVertical, Phone, Video, Image, File, Mic, MessageSquare } from "lucide-react";
 import { motion } from 'framer-motion';
 
 interface Message {
