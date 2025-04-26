@@ -248,59 +248,303 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Quick Links with Enhanced Design */}
-      <section className="w-full py-12 md:py-24 bg-gradient-to-b from-secondary to-secondary/90 text-secondary-foreground">
+      {/* Academic Programs Section */}
+      <section className="w-full py-12 md:py-24 bg-gradient-to-b from-background to-background/80">
         <div className="container px-4 md:px-6">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="flex flex-col items-center justify-center space-y-6 text-center"
           >
-            <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-white/80">
-              {t('quick_links')}
-            </h2>
-          </motion.div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}
-            >
-              <Card className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300">
+            <div className="space-y-4">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">
+                {t('academic_programs')}
+              </h2>
+              <p className="mx-auto max-w-[700px] text-muted-foreground text-lg">
+                {t('academic_programs_desc')}
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
+              <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
                 <CardHeader>
-                  <CardTitle className="text-center">{t('edu_portal')}</CardTitle>
+                  <CardTitle className="text-xl">{t('primary_school')}</CardTitle>
+                  <CardDescription>{t('primary_school_desc')}</CardDescription>
                 </CardHeader>
-                <CardContent className="text-center">
-                  <Button variant="secondary" className="w-full">{t('login')}</Button>
+                <CardContent>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li>• {t('primary_school_feature1')}</li>
+                    <li>• {t('primary_school_feature2')}</li>
+                    <li>• {t('primary_school_feature3')}</li>
+                  </ul>
+                </CardContent>
+                <CardFooter>
+                  <Button className="w-full">{t('learn_more')}</Button>
+                </CardFooter>
+              </Card>
+              <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
+                <CardHeader>
+                  <CardTitle className="text-xl">{t('middle_school')}</CardTitle>
+                  <CardDescription>{t('middle_school_desc')}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li>• {t('middle_school_feature1')}</li>
+                    <li>• {t('middle_school_feature2')}</li>
+                    <li>• {t('middle_school_feature3')}</li>
+                  </ul>
+                </CardContent>
+                <CardFooter>
+                  <Button className="w-full">{t('learn_more')}</Button>
+                </CardFooter>
+              </Card>
+              <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
+                <CardHeader>
+                  <CardTitle className="text-xl">{t('high_school')}</CardTitle>
+                  <CardDescription>{t('high_school_desc')}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li>• {t('high_school_feature1')}</li>
+                    <li>• {t('high_school_feature2')}</li>
+                    <li>• {t('high_school_feature3')}</li>
+                  </ul>
+                </CardContent>
+                <CardFooter>
+                  <Button className="w-full">{t('learn_more')}</Button>
+                </CardFooter>
+              </Card>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Facilities Section */}
+      <section className="w-full py-12 md:py-24 bg-gradient-to-b from-muted to-background">
+        <div className="container px-4 md:px-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="flex flex-col items-center justify-center space-y-6 text-center"
+          >
+            <div className="space-y-4">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">
+                {t('facilities')}
+              </h2>
+              <p className="mx-auto max-w-[700px] text-muted-foreground text-lg">
+                {t('facilities_desc')}
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-5xl">
+              <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
+                <CardHeader>
+                  <CardTitle className="text-xl">{t('library')}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <img
+                    src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+                    alt={t('library')}
+                    className="aspect-video w-full rounded-lg object-cover"
+                  />
+                  <p className="mt-4 text-muted-foreground">
+                    {t('library_desc')}
+                  </p>
                 </CardContent>
               </Card>
-            </motion.div>
-            <Card className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-colors">
-              <CardHeader>
-                <CardTitle className="text-center">{t('exam_schedule')}</CardTitle>
-              </CardHeader>
-              <CardContent className="text-center">
-                <Button variant="secondary" className="w-full">{t('view_all')}</Button>
-              </CardContent>
-            </Card>
-            <Card className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-colors">
-              <CardHeader>
-                <CardTitle className="text-center">{t('student_activities')}</CardTitle>
-              </CardHeader>
-              <CardContent className="text-center">
-                <Button variant="secondary" className="w-full">{t('discover')}</Button>
-              </CardContent>
-            </Card>
-            <Card className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-colors">
-              <CardHeader>
-                <CardTitle className="text-center">{t('academic_calendar')}</CardTitle>
-              </CardHeader>
-              <CardContent className="text-center">
-                <Button variant="secondary" className="w-full">{t('download')}</Button>
-              </CardContent>
-            </Card>
-          </div>
+              <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
+                <CardHeader>
+                  <CardTitle className="text-xl">{t('sports')}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <img
+                    src="https://images.unsplash.com/photo-1547347298-4074fc3086f0?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+                    alt={t('sports')}
+                    className="aspect-video w-full rounded-lg object-cover"
+                  />
+                  <p className="mt-4 text-muted-foreground">
+                    {t('sports_desc')}
+                  </p>
+                </CardContent>
+              </Card>
+              <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
+                <CardHeader>
+                  <CardTitle className="text-xl">{t('labs')}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <img
+                    src="https://images.unsplash.com/photo-1581094794329-c8112c4e0e0c?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+                    alt={t('labs')}
+                    className="aspect-video w-full rounded-lg object-cover"
+                  />
+                  <p className="mt-4 text-muted-foreground">
+                    {t('labs_desc')}
+                  </p>
+                </CardContent>
+              </Card>
+              <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
+                <CardHeader>
+                  <CardTitle className="text-xl">{t('arts')}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <img
+                    src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+                    alt={t('arts')}
+                    className="aspect-video w-full rounded-lg object-cover"
+                  />
+                  <p className="mt-4 text-muted-foreground">
+                    {t('arts_desc')}
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="w-full py-12 md:py-24 bg-gradient-to-b from-background to-background/80">
+        <div className="container px-4 md:px-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="flex flex-col items-center justify-center space-y-6 text-center"
+          >
+            <div className="space-y-4">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">
+                {t('testimonials')}
+              </h2>
+              <p className="mx-auto max-w-[700px] text-muted-foreground text-lg">
+                {t('testimonials_desc')}
+              </p>
+            </div>
+            <Carousel className="w-full max-w-5xl">
+              <CarouselContent>
+                <CarouselItem>
+                  <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-4">
+                        <img
+                          src="/placeholder.svg"
+                          alt={t('parent_name1')}
+                          className="h-16 w-16 rounded-full object-cover border-2 border-primary shadow-lg"
+                        />
+                        <div className={`text-${isRtl ? 'right' : 'left'}`}>
+                          <div className="font-semibold text-lg">{t('parent_name1')}</div>
+                          <div className="text-sm text-muted-foreground">{t('parent_title1')}</div>
+                        </div>
+                      </div>
+                      <blockquote className={`mt-4 ${isRtl ? 'pr-6' : 'pl-6'} italic text-xl text-muted-foreground`}>
+                        {t('parent_testimonial1')}
+                      </blockquote>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+                <CarouselItem>
+                  <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-4">
+                        <img
+                          src="/placeholder.svg"
+                          alt={t('student_name1')}
+                          className="h-16 w-16 rounded-full object-cover border-2 border-primary shadow-lg"
+                        />
+                        <div className={`text-${isRtl ? 'right' : 'left'}`}>
+                          <div className="font-semibold text-lg">{t('student_name1')}</div>
+                          <div className="text-sm text-muted-foreground">{t('student_grade1')}</div>
+                        </div>
+                      </div>
+                      <blockquote className={`mt-4 ${isRtl ? 'pr-6' : 'pl-6'} italic text-xl text-muted-foreground`}>
+                        {t('student_testimonial1')}
+                      </blockquote>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+                <CarouselItem>
+                  <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-4">
+                        <img
+                          src="/placeholder.svg"
+                          alt={t('alumni_name1')}
+                          className="h-16 w-16 rounded-full object-cover border-2 border-primary shadow-lg"
+                        />
+                        <div className={`text-${isRtl ? 'right' : 'left'}`}>
+                          <div className="font-semibold text-lg">{t('alumni_name1')}</div>
+                          <div className="text-sm text-muted-foreground">{t('alumni_title1')}</div>
+                        </div>
+                      </div>
+                      <blockquote className={`mt-4 ${isRtl ? 'pr-6' : 'pl-6'} italic text-xl text-muted-foreground`}>
+                        {t('alumni_testimonial1')}
+                      </blockquote>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+              </CarouselContent>
+              <CarouselPrevious className={isRtl ? "right-2" : "left-2"} />
+              <CarouselNext className={isRtl ? "left-2" : "right-2"} />
+            </Carousel>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Quick Links Section */}
+      <section className="w-full py-12 md:py-24 bg-gradient-to-b from-muted to-background">
+        <div className="container px-4 md:px-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="flex flex-col items-center justify-center space-y-6 text-center"
+          >
+            <div className="space-y-4">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">
+                {t('quick_links')}
+              </h2>
+              <p className="mx-auto max-w-[700px] text-muted-foreground text-lg">
+                {t('quick_links_desc')}
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-5xl">
+              <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
+                <CardHeader>
+                  <CardTitle className="text-xl">{t('admissions')}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Button variant="outline" className="w-full">{t('apply_now')}</Button>
+                </CardContent>
+              </Card>
+              <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
+                <CardHeader>
+                  <CardTitle className="text-xl">{t('calendar')}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Button variant="outline" className="w-full">{t('view_calendar')}</Button>
+                </CardContent>
+              </Card>
+              <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
+                <CardHeader>
+                  <CardTitle className="text-xl">{t('newsletter')}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Button variant="outline" className="w-full">{t('subscribe')}</Button>
+                </CardContent>
+              </Card>
+              <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
+                <CardHeader>
+                  <CardTitle className="text-xl">{t('contact')}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Button variant="outline" className="w-full">{t('get_in_touch')}</Button>
+                </CardContent>
+              </Card>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>

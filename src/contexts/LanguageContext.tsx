@@ -72,7 +72,7 @@ const translations: TranslationDictionary = {
   mediaFiles: { en: 'Media Files', ar: 'ملفات الوسائط' },
   uploadVideo: { en: 'Upload Video', ar: 'تحميل فيديو' },
   uploadImage: { en: 'Upload Image', ar: 'تحميل صورة' },
-  uploadAudio: { en: 'Upload Audio', ar: 'تح��يل صوت' },
+  uploadAudio: { en: 'Upload Audio', ar: 'تحميل صوت' },
   title: { en: 'Title', ar: 'العنوان' },
   type: { en: 'Type', ar: 'النوع' },
   size: { en: 'Size', ar: 'الحجم' },
@@ -130,7 +130,7 @@ const translations: TranslationDictionary = {
   academicPerformance: { en: 'Academic Performance', ar: 'الأداء الأكاديمي' },
   gpa: { en: 'GPA', ar: 'المعدل التراكمي' },
   courseProgress: { en: 'Course Progress', ar: 'تقدم المادة' },
-  viewAllCourses: { en: 'View All Courses', ar: 'عرض جميع المو���د' },
+  viewAllCourses: { en: 'View All Courses', ar: 'عرض جميع المواد' },
   progress: { en: 'Progress', ar: 'التقدم' },
   viewAssignments: { en: 'View Assignments', ar: 'عرض الواجبات' },
   viewNotes: { en: 'View Notes', ar: 'عرض الملاحظات' },
@@ -189,7 +189,7 @@ const translations: TranslationDictionary = {
     ar: 'اختبار يغطي المعادلات الجبرية والدوال والرسم البياني' 
   },
   goodWork: { en: 'Good work on the equations section!', ar: 'عمل جيد في قسم المعادلات!' },
-  excellentWork: { en: 'Excellent work, very thorough answers!', ar: 'عمل ممت��ز، إجابات شاملة جدًا!' },
+  excellentWork: { en: 'Excellent work, very thorough answers!', ar: 'عمل ممتاز، إجابات شاملة جدًا!' },
   scienceProjectEcosystem: { en: 'Science Project: Ecosystem', ar: 'مشروع العلوم: النظام البيئي' },
   scienceProjectDescription: { 
     en: 'Create a model of a local ecosystem and document the interactions', 
@@ -245,7 +245,7 @@ const translations: TranslationDictionary = {
   yourMessageHasBeenPosted: { en: 'Your message has been posted successfully', ar: 'تم نشر رسالتك بنجاح' },
   projectGroups: { en: 'Project Groups', ar: 'مجموعات المشاريع' },
   createNewProjectGroup: { en: 'Create New Project Group', ar: 'إنشاء مجموعة مشروع جديدة' },
-  collaborateWithOthers: { en: 'Collaborate with other students on projects', ar: 'تعاون مع طلاب آخرين في المشاري��' },
+  collaborateWithOthers: { en: 'Collaborate with other students on projects', ar: 'تعاون مع طلاب آخرين في المشاريع' },
   groupName: { en: 'Group Name', ar: 'اسم المجموعة' },
   enterGroupName: { en: 'Enter group name', ar: 'أدخل اسم المجموعة' },
   describeYourGroup: { en: 'Describe your group purpose and goals...', ar: 'صف غرض مجموعتك وأهدافها...' },
@@ -323,7 +323,132 @@ const translations: TranslationDictionary = {
   coursesGuide: { 
     en: 'Browse and manage your courses', 
     ar: 'تصفح وإدارة موادك الدراسية' 
-  }
+  },
+
+  // Home page translations
+  welcome: { en: 'Welcome to Our School', ar: 'مرحباً بكم في مدرستنا' },
+  intro: { 
+    en: 'A place where excellence in education meets innovation and tradition', 
+    ar: 'مكان يجتمع فيه التميز في التعليم مع الابتكار والتقاليد' 
+  },
+  discover: { en: 'Discover More', ar: 'اكتشف المزيد' },
+  contact_us: { en: 'Contact Us', ar: 'اتصل بنا' },
+  about_us: { en: 'About Us', ar: 'من نحن' },
+  about_text: { 
+    en: 'Our school is dedicated to providing a world-class education that prepares students for success in an ever-changing world.', 
+    ar: 'مدرستنا مكرسة لتقديم تعليم عالمي المستوى يعد الطلاب للنجاح في عالم متغير باستمرار.' 
+  },
+  vision: { en: 'Our Vision', ar: 'رؤيتنا' },
+  vision_text: { 
+    en: 'To be a leading educational institution that inspires lifelong learning and global citizenship.', 
+    ar: 'أن نكون مؤسسة تعليمية رائدة تلهم التعلم مدى الحياة والمواطنة العالمية.' 
+  },
+  mission: { en: 'Our Mission', ar: 'مهمتنا' },
+  mission_text: { 
+    en: 'To provide an exceptional educational experience that nurtures intellectual curiosity, creativity, and character development.', 
+    ar: 'تقديم تجربة تعليمية استثنائية تعزز الفضول الفكري والإبداع وتنمية الشخصية.' 
+  },
+  principal_message: { en: 'Message from the Principal', ar: 'رسالة من المدير' },
+  principal_quote: { 
+    en: 'At our school, we believe in creating an environment where every student can thrive and reach their full potential.', 
+    ar: 'في مدرستنا، نؤمن بخلق بيئة يمكن لكل طالب أن يزدهر فيها ويحقق إمكاناته الكاملة.' 
+  },
+  principal_name: { en: 'Dr. Sarah Johnson', ar: 'الدكتورة سارة جونسون' },
+  principal_title: { en: 'School Principal', ar: 'مديرة المدرسة' },
+  news_events: { en: 'News & Events', ar: 'الأخبار والفعاليات' },
+  news_events_desc: { 
+    en: 'Stay updated with the latest happenings and upcoming events at our school.', 
+    ar: 'ابق على اطلاع بأحدث الأحداث والفعاليات القادمة في مدرستنا.' 
+  },
+  read_more: { en: 'Read More', ar: 'اقرأ المزيد' },
+  view_all: { en: 'View All', ar: 'عرض الكل' },
+
+  // New sections translations
+  academic_programs: { en: 'Academic Programs', ar: 'البرامج الأكاديمية' },
+  academic_programs_desc: { 
+    en: 'Explore our comprehensive educational programs designed to meet the needs of every student.', 
+    ar: 'اكتشف برامجنا التعليمية الشاملة المصممة لتلبية احتياجات كل طالب.' 
+  },
+  primary_school: { en: 'Primary School', ar: 'المدرسة الابتدائية' },
+  primary_school_desc: { en: 'Grades 1-5', ar: 'الصفوف 1-5' },
+  primary_school_feature1: { en: 'Interactive Learning', ar: 'التعلم التفاعلي' },
+  primary_school_feature2: { en: 'Basic Skills Development', ar: 'تطوير المهارات الأساسية' },
+  primary_school_feature3: { en: 'Creative Activities', ar: 'الأنشطة الإبداعية' },
+  middle_school: { en: 'Middle School', ar: 'المدرسة المتوسطة' },
+  middle_school_desc: { en: 'Grades 6-8', ar: 'الصفوف 6-8' },
+  middle_school_feature1: { en: 'Advanced Curriculum', ar: 'منهج متقدم' },
+  middle_school_feature2: { en: 'Critical Thinking', ar: 'التفكير النقدي' },
+  middle_school_feature3: { en: 'Project-Based Learning', ar: 'التعلم القائم على المشاريع' },
+  high_school: { en: 'High School', ar: 'المدرسة الثانوية' },
+  high_school_desc: { en: 'Grades 9-12', ar: 'الصفوف 9-12' },
+  high_school_feature1: { en: 'College Preparation', ar: 'التحضير للجامعة' },
+  high_school_feature2: { en: 'Specialized Tracks', ar: 'مسارات متخصصة' },
+  high_school_feature3: { en: 'Career Guidance', ar: 'الإرشاد المهني' },
+  learn_more: { en: 'Learn More', ar: 'اعرف المزيد' },
+
+  facilities: { en: 'Our Facilities', ar: 'مرافقنا' },
+  facilities_desc: { 
+    en: 'State-of-the-art facilities designed to enhance the learning experience.', 
+    ar: 'مرافق متطورة مصممة لتعزيز تجربة التعلم.' 
+  },
+  library: { en: 'Library', ar: 'المكتبة' },
+  library_desc: { 
+    en: 'A vast collection of books and digital resources for research and learning.', 
+    ar: 'مجموعة كبيرة من الكتب والموارد الرقمية للبحث والتعلم.' 
+  },
+  sports: { en: 'Sports Complex', ar: 'المجمع الرياضي' },
+  sports_desc: { 
+    en: 'Modern sports facilities for various athletic activities and competitions.', 
+    ar: 'مرافق رياضية حديثة للأنشطة والمسابقات الرياضية المختلفة.' 
+  },
+  labs: { en: 'Science Labs', ar: 'المختبرات العلمية' },
+  labs_desc: { 
+    en: 'Fully equipped laboratories for hands-on scientific experiments and research.', 
+    ar: 'مختبرات مجهزة بالكامل للتجارب العلمية العملية والبحث.' 
+  },
+  arts: { en: 'Arts Center', ar: 'مركز الفنون' },
+  arts_desc: { 
+    en: 'Dedicated spaces for visual and performing arts education and practice.', 
+    ar: 'مساحات مخصصة لتعليم الفنون البصرية والأدائية وممارستها.' 
+  },
+
+  testimonials: { en: 'Testimonials', ar: 'شهادات' },
+  testimonials_desc: { 
+    en: 'Hear what our community has to say about their experience at our school.', 
+    ar: 'استمع إلى ما يقوله مجتمعنا عن تجربتهم في مدرستنا.' 
+  },
+  parent_name1: { en: 'Ahmed Hassan', ar: 'أحمد حسن' },
+  parent_title1: { en: 'Parent of Grade 4 Student', ar: 'ولي أمر طالب الصف الرابع' },
+  parent_testimonial1: { 
+    en: 'The school has provided an excellent environment for my child\'s growth and development.', 
+    ar: 'وفرت المدرسة بيئة ممتازة لنمو وتطور طفلي.' 
+  },
+  student_name1: { en: 'Fatima Ali', ar: 'فاطمة علي' },
+  student_grade1: { en: 'Grade 10 Student', ar: 'طالبة الصف العاشر' },
+  student_testimonial1: { 
+    en: 'I love the supportive teachers and the opportunities for extracurricular activities.', 
+    ar: 'أحب المعلمين الداعمين والفرص المتاحة للأنشطة اللامنهجية.' 
+  },
+  alumni_name1: { en: 'Mohammed Ahmed', ar: 'محمد أحمد' },
+  alumni_title1: { en: 'Class of 2020', ar: 'دفعة 2020' },
+  alumni_testimonial1: { 
+    en: 'The education I received here prepared me well for university and my career.', 
+    ar: 'التعليم الذي تلقيتُه هنا أعدني جيداً للجامعة ومهنتي.' 
+  },
+
+  quick_links: { en: 'Quick Links', ar: 'روابط سريعة' },
+  quick_links_desc: { 
+    en: 'Access important information and resources with just one click.', 
+    ar: 'الوصول إلى المعلومات والموارد المهمة بنقرة واحدة.' 
+  },
+  admissions: { en: 'Admissions', ar: 'القبول' },
+  apply_now: { en: 'Apply Now', ar: 'تقدم الآن' },
+  calendar: { en: 'School Calendar', ar: 'التقويم المدرسي' },
+  view_calendar: { en: 'View Calendar', ar: 'عرض التقويم' },
+  newsletter: { en: 'Newsletter', ar: 'النشرة الإخبارية' },
+  subscribe: { en: 'Subscribe', ar: 'اشترك' },
+  contact: { en: 'Contact', ar: 'اتصل بنا' },
+  get_in_touch: { en: 'Get in Touch', ar: 'تواصل معنا' },
 };
 
 interface LanguageContextType {
