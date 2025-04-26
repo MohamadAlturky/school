@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Calendar as CalendarIcon } from "lucide-react";
+import { Calendar as CalendarIcon, ChevronLeft, ChevronRight } from "lucide-react";
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Button } from "@/components/ui/button";
 
 interface Assignment {
     id: number;
@@ -19,9 +20,9 @@ interface StudentCalendarProps {
 
 const StudentCalendar: React.FC<StudentCalendarProps> = ({ assignments }) => {
     const { t } = useLanguage();
+    const [currentDate, setCurrentDate] = useState(new Date());
 
     // Get current month and year
-    const currentDate = new Date();
     const currentMonth = currentDate.getMonth();
     const currentYear = currentDate.getFullYear();
 
@@ -62,13 +63,56 @@ const StudentCalendar: React.FC<StudentCalendarProps> = ({ assignments }) => {
         }
     };
 
+    // Get status text color
+    const getStatusTextColor = (status: string) => {
+        switch (status) {
+            case 'pending':
+                return 'text-orange-500';
+            case 'completed':
+                return 'text-green-500';
+            case 'missed':
+                return 'text-red-500';
+            default:
+                return 'text-gray-500';
+        }
+    };
+
+    // Navigate to previous month
+    const goToPreviousMonth = () => {
+        setCurrentDate(new Date(currentYear, currentMonth - 1, 1));
+    };
+
+    // Navigate to next month
+    const goToNextMonth = () => {
+        setCurrentDate(new Date(currentYear, currentMonth + 1, 1));
+    };
+
+    // Format month and year
+    const monthNames = [
+        t('january'), t('february'), t('march'), t('april'), t('may'), t('june'),
+        t('july'), t('august'), t('september'), t('october'), t('november'), t('december')
+    ];
+
     return (
         <Card>
             <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                    <CalendarIcon className="h-5 w-5" />
-                    {t('calendar')}
-                </CardTitle>
+                <div className="flex items-center justify-between">
+                    <CardTitle className="flex items-center gap-2">
+                        <CalendarIcon className="h-5 w-5" />
+                        {t('calendar')}
+                    </CardTitle>
+                    <div className="flex items-center gap-2">
+                        <Button variant="outline" size="icon" onClick={goToPreviousMonth}>
+                            <ChevronLeft className="h-4 w-4" />
+                        </Button>
+                        <span className="font-medium">
+                            {monthNames[currentMonth]} {currentYear}
+                        </span>
+                        <Button variant="outline" size="icon" onClick={goToNextMonth}>
+                            <ChevronRight className="h-4 w-4" />
+                        </Button>
+                    </div>
+                </div>
             </CardHeader>
             <CardContent>
                 <div className="grid grid-cols-7 gap-1">
@@ -80,38 +124,63 @@ const StudentCalendar: React.FC<StudentCalendarProps> = ({ assignments }) => {
                     ))}
 
                     {/* Calendar days */}
-                    {calendarDays.map((day, index) => (
-                        <div
-                            key={index}
-                            className={`relative h-20 p-1 border rounded-md ${day === currentDate.getDate() ? 'border-primary' : 'border-border'
-                                }`}
-                        >
-                            {day && (
-                                <>
-                                    <span className="text-sm">{day}</span>
-                                    <div className="absolute bottom-1 left-1 right-1 flex flex-wrap gap-1">
-                                        {getAssignmentsForDate(day).map((assignment) => (
-                                            <TooltipProvider key={assignment.id}>
+                    {calendarDays.map((day, index) => {
+                        const assignmentsForDay = getAssignmentsForDate(day);
+                        const hasAssignments = assignmentsForDay.length > 0;
+
+                        return (
+                            <div
+                                key={index}
+                                className={`relative h-20 p-1 border rounded-md ${day === new Date().getDate() &&
+                                        currentMonth === new Date().getMonth() &&
+                                        currentYear === new Date().getFullYear()
+                                        ? 'border-primary'
+                                        : 'border-border'
+                                    } ${hasAssignments ? 'bg-muted/50' : ''}`}
+                            >
+                                {day && (
+                                    <>
+                                        <span className="text-sm">{day}</span>
+                                        {hasAssignments && (
+                                            <TooltipProvider>
                                                 <Tooltip>
-                                                    <TooltipTrigger>
-                                                        <div
-                                                            className={`w-2 h-2 rounded-full ${getStatusColor(assignment.status)}`}
-                                                        />
+                                                    <TooltipTrigger asChild>
+                                                        <div className="absolute bottom-1 left-1 right-1 flex flex-wrap gap-1">
+                                                            {assignmentsForDay.map((assignment) => (
+                                                                <div
+                                                                    key={assignment.id}
+                                                                    className={`w-5 h-5 rounded-full ${getStatusColor(assignment.status)}`}
+                                                                />
+                                                            ))}
+                                                        </div>
                                                     </TooltipTrigger>
-                                                    <TooltipContent>
-                                                        <p className="font-medium">{assignment.title}</p>
-                                                        <p className="text-sm text-muted-foreground">
-                                                            {assignment.time} - {t(assignment.status)}
-                                                        </p>
+                                                    <TooltipContent className="max-w-[200px]">
+                                                        <div className="space-y-2">
+                                                            {assignmentsForDay.map((assignment) => (
+                                                                <div key={assignment.id} className="space-y-1">
+                                                                    <p className={`font-medium ${getStatusTextColor(assignment.status)}`}>
+                                                                        {assignment.title}
+                                                                    </p>
+                                                                    <div className="flex items-center justify-between text-xs">
+                                                                        <span className="text-muted-foreground">
+                                                                            {assignment.time}
+                                                                        </span>
+                                                                        <span className={`font-medium ${getStatusTextColor(assignment.status)}`}>
+                                                                            {t(assignment.status)}
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            ))}
+                                                        </div>
                                                     </TooltipContent>
                                                 </Tooltip>
                                             </TooltipProvider>
-                                        ))}
-                                    </div>
-                                </>
-                            )}
-                        </div>
-                    ))}
+                                        )}
+                                    </>
+                                )}
+                            </div>
+                        );
+                    })}
                 </div>
             </CardContent>
         </Card>

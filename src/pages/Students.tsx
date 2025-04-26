@@ -36,6 +36,7 @@ const Students = () => {
     { id: 1, title: 'Math Quiz - Algebra', dueDate: '2025-05-10', status: 'pending', course: 'Mathematics' },
     { id: 2, title: 'Science Project - Ecosystem', dueDate: '2025-05-15', status: 'completed', course: 'Science' },
     { id: 3, title: 'History Essay', dueDate: '2025-05-20', status: 'pending', course: 'History' },
+    { id: 3, title: 'FFF SSS', dueDate: '2025-05-20', status: 'missed', course: 'SSSS' }
   ];
 
   const recentActivities = [
@@ -47,6 +48,7 @@ const Students = () => {
   const calendarEvents = [
     { id: 1, title: 'Mathematics', date: '2025-05-10', type: 'class' as const, time: '09:00 AM' },
     { id: 2, title: 'Science Project Due', date: '2025-05-15', type: 'assignment' as const, time: '11:59 PM' },
+    { id: 4, title: 'Science Project Due', date: '2025-05-15', type: 'class' as const, time: '11:59 PM' },
     { id: 3, title: 'History Exam', date: '2025-05-20', type: 'exam' as const, time: '10:00 AM' },
   ];
 
