@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -15,6 +14,9 @@ import CourseManagement from "./pages/admin/CourseManagement";
 import ChatTab from "./components/chat/ChatTab";
 import NotFound from "./pages/NotFound";
 import { LanguageProvider } from "./contexts/LanguageContext";
+import CourseAssignments from './pages/CourseAssignments';
+import CourseNotes from './pages/CourseNotes';
+import CourseDetails from './pages/CourseDetails';
 
 const queryClient = new QueryClient();
 
@@ -35,6 +37,9 @@ const App = () => (
               <Route path="/chat" element={<ChatTab />} />
               <Route path="/admin/courses" element={<Courses />} />
               <Route path="/admin/course-management" element={<CourseManagement />} />
+              <Route path="/courses/:courseId/assignments" element={<CourseAssignments />} />
+              <Route path="/courses/:courseId/notes" element={<CourseNotes />} />
+              <Route path="/courses/:courseId" element={<CourseDetails />} />
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
