@@ -2,13 +2,16 @@
     "name": "vite_react_shadcn_ts",
     "private": true,
     "version": "0.0.0",
+    "homepage": "https://mohamadalturky.github.io/school",
     "type": "module",
     "scripts": {
         "dev": "vite",
         "build": "vite build",
         "build:dev": "vite build --mode development",
         "lint": "eslint .",
-        "preview": "vite preview"
+        "preview": "vite preview" ,
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d build"
     },
     "dependencies": {
         "@hookform/resolvers": "^3.9.0",
