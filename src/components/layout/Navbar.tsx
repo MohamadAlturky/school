@@ -17,6 +17,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { FaUserShield } from 'react-icons/fa';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -93,6 +94,12 @@ const Navbar: React.FC = () => {
                   {t('courses')}
                 </NavLink>
               </NavigationMenuItem>
+              <NavigationMenuItem>
+                <NavLink to="/admin/dashboard" tooltip={t('adminDashboardGuide')}>
+                  <FaUserShield className="mr-2 h-4 w-4" />
+                  {t('adminDashboard')}
+                </NavLink>
+              </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
         </nav>
@@ -144,6 +151,10 @@ const Navbar: React.FC = () => {
             </Link>
             <Link to="/admin/courses" className="px-2 py-1 text-lg hover:text-primary">
               {t('courses')}
+            </Link>
+            <Link to="/admin/dashboard" className="px-2 py-1 text-lg hover:text-primary">
+              <FaUserShield className="mr-2 h-4 w-4" />
+              {t('adminDashboard')}
             </Link>
             <div className="flex items-center justify-between pt-2">
               <Button className="w-full">{t('login')}</Button>

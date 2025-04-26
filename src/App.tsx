@@ -19,6 +19,10 @@ import CourseNotes from './pages/CourseNotes';
 import CourseDetails from './pages/CourseDetails';
 import CourseStudents from './pages/admin/CourseStudents';
 import CourseFiles from './pages/admin/CourseFiles';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import Reports from './pages/admin/Reports';
+import UserManagement from './pages/admin/UserManagement';
+import SystemSettings from './pages/admin/SystemSettings';
 
 const queryClient = new QueryClient();
 
@@ -41,6 +45,10 @@ const App = () => (
               <Route path="/admin/course-management" element={<CourseManagement />} />
               <Route path="/admin/course-management/:courseId/students" element={<CourseStudents />} />
               <Route path="/admin/course-management/:courseId/files" element={<CourseFiles />} />
+              <Route path="/admin/dashboard" element={<AdminDashboard />} />
+              <Route path="/admin/reports" element={<Reports />} />
+              <Route path="/admin/users" element={<UserManagement />} />
+              <Route path="/admin/settings" element={<SystemSettings />} />
               <Route path="/courses/:courseId/assignments" element={<CourseAssignments />} />
               <Route path="/courses/:courseId/notes" element={<CourseNotes />} />
               <Route path="/courses/:courseId" element={<CourseDetails />} />
