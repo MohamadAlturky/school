@@ -350,7 +350,7 @@ const ChatTab = () => {
                       </div>
                     )}
                     <div className="flex justify-between items-center mt-2">
-                      <span className="text-xs text-gray-400">{msg.time}</span>
+                      <span className={cn("text-xs", msg.isMe ? "text-gray-200" : "text-gray-400")}>{msg.time}</span>
                       <span className={cn("text-xs", msg.status === 'read' ? 'text-blue-200' : 'text-gray-200')}>✓✓</span>
                     </div>
                   </div>
