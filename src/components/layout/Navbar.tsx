@@ -68,12 +68,12 @@ const Navbar: React.FC = () => {
                   {t('calendar')}
                 </NavLink>
               </NavigationMenuItem>
-              <NavigationMenuItem>
+              {/* <NavigationMenuItem>
                 <NavLink to="/chat" tooltip={t('chatGuide')}>
                   <MessageSquare className="mr-2 h-4 w-4" />
                   {t('chat')}
                 </NavLink>
-              </NavigationMenuItem>
+              </NavigationMenuItem> */}
               <NavigationMenuItem>
                 <NavLink to="/teachers" tooltip={t('teachersGuide')}>
                   {t('teachers')}
