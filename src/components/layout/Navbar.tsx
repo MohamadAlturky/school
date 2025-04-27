@@ -1,47 +1,62 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { 
+import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuList,
-  NavigationMenuTrigger
 } from '@/components/ui/navigation-menu';
-import { Menu, X, Bell, MessageSquare, Calendar } from 'lucide-react';
+import { Menu, X, Bell, LogIn, LogOut } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useAuth } from '@/contexts/AuthContext';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { FaUserShield } from 'react-icons/fa';
+import { guestNavItems, studentNavItems, teacherNavItems, parentNavItems, adminNavItems, NavItem } from '@/routes/navigation';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useLanguage();
+  const { user, logout } = useAuth();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  const NavLink = ({ to, children, tooltip }: { to: string; children: React.ReactNode; tooltip: string }) => (
+  const NavLink = ({ item }: { item: NavItem }) => (
     <Tooltip>
       <TooltipTrigger asChild>
         <Link
-          to={to}
+          to={item.path}
           className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-base font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
         >
-          {children}
+          {item.icon}
+          {t(item.label)}
         </Link>
       </TooltipTrigger>
       <TooltipContent>
-        <p>{tooltip}</p>
+        <p>{t(item.tooltip)}</p>
       </TooltipContent>
     </Tooltip>
   );
+
+  const getNavItems = () => {
+    switch (user?.role) {
+      case 'student':
+        return studentNavItems;
+      case 'teacher':
+        return teacherNavItems;
+      case 'parent':
+        return parentNavItems;
+      case 'admin':
+        return adminNavItems;
+      default:
+        return guestNavItems;
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -52,72 +67,46 @@ const Navbar: React.FC = () => {
             <span className="text-xl font-bold text-primary">مدرسة آفاق</span>
           </Link>
         </div>
-        
+
         {/* Desktop Navigation */}
         <nav className="hidden md:flex">
           <NavigationMenu>
             <NavigationMenuList className="gap-1">
-              <NavigationMenuItem>
-                <NavLink to="/" tooltip={t('homeGuide')}>
-                  {t('home')}
-                </NavLink>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavLink to="/calendar" tooltip={t('calendarGuide')}>
-                  <Calendar className="mr-2 h-4 w-4" />
-                  {t('calendar')}
-                </NavLink>
-              </NavigationMenuItem>
-              {/* <NavigationMenuItem>
-                <NavLink to="/chat" tooltip={t('chatGuide')}>
-                  <MessageSquare className="mr-2 h-4 w-4" />
-                  {t('chat')}
-                </NavLink>
-              </NavigationMenuItem> */}
-              <NavigationMenuItem>
-                <NavLink to="/teachers" tooltip={t('teachersGuide')}>
-                  {t('teachers')}
-                </NavLink>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavLink to="/students" tooltip={t('studentsGuide')}>
-                  {t('students')}
-                </NavLink>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavLink to="/parents" tooltip={t('parentsGuide')}>
-                  {t('parents')}
-                </NavLink>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavLink to="/admin/courses" tooltip={t('coursesGuide')}>
-                  {t('courses')}
-                </NavLink>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavLink to="/admin/dashboard" tooltip={t('adminDashboardGuide')}>
-                  <FaUserShield className="mr-2 h-4 w-4" />
-                  {t('adminDashboard')}
-                </NavLink>
-              </NavigationMenuItem>
+              {getNavItems().map((item, index) => (
+                <NavigationMenuItem key={index}>
+                  <NavLink item={item} />
+                </NavigationMenuItem>
+              ))}
             </NavigationMenuList>
           </NavigationMenu>
         </nav>
-        
+
         <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon" className="relative">
-            <Bell className="h-5 w-5" />
-            <span className="absolute top-0 right-0 w-2 h-2 bg-secondary rounded-full" />
-          </Button>
+          {user && (
+            <Button variant="ghost" size="icon" className="relative">
+              <Bell className="h-5 w-5" />
+              <span className="absolute top-0 right-0 w-2 h-2 bg-secondary rounded-full" />
+            </Button>
+          )}
           <LanguageSwitcher />
-          <Button variant="outline" className="hidden md:flex">
-            {t('login')}
-          </Button>
-          
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            className="md:hidden" 
+          {user ? (
+            <Button variant="outline" onClick={logout}>
+              <LogOut className="mr-2 h-4 w-4" />
+              {t('logout')}
+            </Button>
+          ) : (
+            <Button variant="outline" asChild>
+              <Link to="/login">
+                <LogIn className="mr-2 h-4 w-4" />
+                {t('login')}
+              </Link>
+            </Button>
+          )}
+
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
             onClick={toggleMenu}
             aria-label={isOpen ? "إغلاق القائمة" : "فتح القائمة"}
           >
@@ -125,40 +114,13 @@ const Navbar: React.FC = () => {
           </Button>
         </div>
       </div>
-      
+
       {isOpen && (
         <div className="container md:hidden">
           <nav className="flex flex-col space-y-3 py-4">
-            <Link to="/" className="px-2 py-1 text-lg hover:text-primary">
-              {t('home')}
-            </Link>
-            <Link to="/calendar" className="px-2 py-1 text-lg hover:text-primary">
-              <Calendar className="mr-2 h-4 w-4" />
-              {t('calendar')}
-            </Link>
-            <Link to="/chat" className="px-2 py-1 text-lg hover:text-primary">
-              <MessageSquare className="mr-2 h-4 w-4" />
-              {t('chat')}
-            </Link>
-            <Link to="/teachers" className="px-2 py-1 text-lg hover:text-primary">
-              {t('teachers')}
-            </Link>
-            <Link to="/students" className="px-2 py-1 text-lg hover:text-primary">
-              {t('students')}
-            </Link>
-            <Link to="/parents" className="px-2 py-1 text-lg hover:text-primary">
-              {t('parents')}
-            </Link>
-            <Link to="/admin/courses" className="px-2 py-1 text-lg hover:text-primary">
-              {t('courses')}
-            </Link>
-            <Link to="/admin/dashboard" className="px-2 py-1 text-lg hover:text-primary">
-              <FaUserShield className="mr-2 h-4 w-4" />
-              {t('adminDashboard')}
-            </Link>
-            <div className="flex items-center justify-between pt-2">
-              <Button className="w-full">{t('login')}</Button>
-            </div>
+            {getNavItems().map((item, index) => (
+              <NavLink key={index} item={item} />
+            ))}
           </nav>
         </div>
       )}

@@ -3,62 +3,45 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
-import RootLayout from "./components/layout/RootLayout";
-import Index from "./pages/Index";
-import Teachers from "./pages/Teachers";
-import Students from "./pages/Students";
-import Parents from "./pages/Parents";
-import Calendar from "./pages/Calendar";
-import Courses from "./pages/admin/Courses";
-import CourseManagement from "./pages/admin/CourseManagement";
-import ChatTab from "./components/chat/ChatTab";
-import NotFound from "./pages/NotFound";
 import { LanguageProvider } from "./contexts/LanguageContext";
-import CourseAssignments from './pages/CourseAssignments';
-import CourseNotes from './pages/CourseNotes';
-import CourseDetails from './pages/CourseDetails';
-import CourseStudents from './pages/admin/CourseStudents';
-import CourseFiles from './pages/admin/CourseFiles';
-import AdminDashboard from './pages/admin/AdminDashboard';
-import Reports from './pages/admin/Reports';
-import UserManagement from './pages/admin/UserManagement';
-import SystemSettings from './pages/admin/SystemSettings';
+import { AuthProvider } from "./contexts/AuthContext";
+import { routes } from "./routes";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <LanguageProvider>
+function App() {
+  return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <Router>
-          <Routes>
-            <Route path="/" element={<RootLayout />}>
-              <Route index element={<Index />} />
-              <Route path="/teachers" element={<Teachers />} />
-              <Route path="/students" element={<Students />} />
-              <Route path="/parents" element={<Parents />} />
-              <Route path="/calendar" element={<Calendar />} />
-              <Route path="/chat" element={<ChatTab />} />
-              <Route path="/admin/courses" element={<Courses />} />
-              <Route path="/admin/course-management" element={<CourseManagement />} />
-              <Route path="/admin/course-management/:courseId/students" element={<CourseStudents />} />
-              <Route path="/admin/course-management/:courseId/files" element={<CourseFiles />} />
-              <Route path="/admin/dashboard" element={<AdminDashboard />} />
-              <Route path="/admin/reports" element={<Reports />} />
-              <Route path="/admin/users" element={<UserManagement />} />
-              <Route path="/admin/settings" element={<SystemSettings />} />
-              <Route path="/courses/:courseId/assignments" element={<CourseAssignments />} />
-              <Route path="/courses/:courseId/notes" element={<CourseNotes />} />
-              <Route path="/courses/:courseId" element={<CourseDetails />} />
-              <Route path="*" element={<NotFound />} />
-            </Route>
-          </Routes>
-        </Router>
-      </TooltipProvider>
+      <LanguageProvider>
+        <AuthProvider>
+          <TooltipProvider>
+            <Router>
+              <Routes>
+                {routes.map((route, index) => (
+                  <Route
+                    key={index}
+                    path={route.path}
+                    element={route.element}
+                  >
+                    {route.children?.map((child, childIndex) => (
+                      <Route
+                        key={childIndex}
+                        path={child.path}
+                        element={child.element}
+                        index={child.index}
+                      />
+                    ))}
+                  </Route>
+                ))}
+              </Routes>
+            </Router>
+            <Toaster />
+            <Sonner />
+          </TooltipProvider>
+        </AuthProvider>
+      </LanguageProvider>
     </QueryClientProvider>
-  </LanguageProvider>
-);
+  );
+}
 
 export default App;
