@@ -43,7 +43,7 @@ const translations: TranslationDictionary = {
   language: { en: 'Language', ar: 'اللغة' },
   
   // Course management translations
-  calendar: { en: 'Calendar', ar: 'التقويم' },
+  // calendar: { en: 'Calendar', ar: 'التقويم' },
   files: { en: 'Files', ar: 'الملفات' },
   multimedia: { en: 'Multimedia', ar: 'الوسائط المتعددة' },
   notes: { en: 'Notes', ar: 'الملاحظات' },
@@ -184,7 +184,7 @@ const translations: TranslationDictionary = {
   needsGrading: { en: 'Needs Grading', ar: 'يحتاج إلى تقييم' },
   submittedOn: { en: 'Submitted on', ar: 'تم التسليم في' },
   feedback: { en: 'Feedback', ar: 'الملاحظات' },
-  grade: { en: 'Grade', ar: 'تقييم' },
+  // grade: { en: 'Grade', ar: 'تقييم' },
   updateGrade: { en: 'Update Grade', ar: 'تحديث التقييم' },
   gradeSubmission: { en: 'Grade Submission', ar: 'تقييم التسليم' },
   gradeSubmissionFor: { en: 'Grade submission for', ar: 'تقييم تسليم لـ' },
@@ -459,7 +459,7 @@ const translations: TranslationDictionary = {
   view_calendar: { en: 'View Calendar', ar: 'عرض التقويم' },
   newsletter: { en: 'Newsletter', ar: 'النشرة الإخبارية' },
   subscribe: { en: 'Subscribe', ar: 'اشترك' },
-  contact: { en: 'Contact', ar: 'اتصل بنا' },
+  // contact: { en: 'Contact', ar: 'اتصل بنا' },
   get_in_touch: { en: 'Get in Touch', ar: 'تواصل معنا' },
 };
 

@@ -1,5 +1,5 @@
 import { FaUserShield, FaChalkboardTeacher, FaUserGraduate, FaUserFriends } from 'react-icons/fa';
-import { Calendar } from 'lucide-react';
+import { Calendar, Home } from 'lucide-react';
 
 export interface NavItem {
   path: string;
@@ -23,8 +23,9 @@ export const guestNavItems: NavItem[] = [
 
 export const studentNavItems: NavItem[] = [
   {
-    path: '/students',
+    path: '/student/homepage',
     label: 'home',
+    icon: <Home className="mr-2 h-4 w-4" />,
     tooltip: 'homeGuide',
   },
   {

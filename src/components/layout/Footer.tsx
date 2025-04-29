@@ -6,7 +6,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 const Footer: React.FC = () => {
   const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
-  
+
   return (
     <footer className="bg-primary text-primary-foreground w-full py-8">
       <div className="container px-4 md:px-6">
